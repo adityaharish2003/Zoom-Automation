@@ -36,7 +36,7 @@ def get_id():
     day = datetime.datetime.now().strftime('%w')
     lesson = getperiod()-1
     if lesson == 0 or lesson == 3:
-        subprocess.Popen("")#enter the path over here
+        subprocess.Popen("")#enter the path in this line
     sleep(4)
     with open('ids.csv') as id_csv:
         id_data = list(reader(id_csv))
