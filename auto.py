@@ -22,7 +22,6 @@ print("88     88  88     88    88    88     88   ")
 print("88     88  Y8.   .8P    88    Y8.   .8P   ")    
 print("88     88  `Y88888P'    dP     `8888P'    ")    
 parser = argparse.ArgumentParser()
-parser.add_argument('--t' , help='Choose between [M/A]')
 parser.add_argument('--m' , help='Select [Y/N] to choose for manual password entry , N by default')
 parser.add_argument('--w' , help="Select [Y/N] to parse passwords from MsWord table , N by default")
 args = parser.parse_args()
@@ -57,9 +56,8 @@ def getperiod():
 def get_id():
     day = datetime.datetime.now().strftime('%w')
     lesson = getperiod()-1
-    if lesson == 0 or lesson == 3:
-        print("Opening Zoom.....")
-        subprocess.Popen(path)#enter the path in this line
+    print("Opening Zoom.....")
+    subprocess.Popen(path)#enter the path in this line
     sleep(4)
     with open('ids.csv') as id_csv:
         id_data = list(reader(id_csv))
@@ -80,10 +78,6 @@ def zoom():
     else:
         zoom_id = get_id()
         zoom_pass = get_pass(str(zoom_id))
-    if args.t:
-       if zoom_pass == '268855':
-            zoom_id = '9014681675'
-            zoom_pass = '232007'
     subprocess.run('clip' , universal_newlines=True , input=zoom_pass)
     print("Locating Join.....")
     while True:
@@ -96,9 +90,7 @@ def zoom():
     sleep(1.5)
     pyautogui.write(zoom_id)
     for i in range(5):
-        pyautogui.press('tab')
-        if i ==  1:
-            pyautogui.write('-9128')
+        pyautogui.press('tab')              
         if i == 3 or i == 4:
             pyautogui.press('enter')
     sleep(1.75)
